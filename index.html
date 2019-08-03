@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fina Grabbarnas Grupp</title>
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css">
 </head>
 
 <body>
@@ -27,17 +28,24 @@
           <div ng-include="'app/shared/documents/documents.html'"></div>
         </div>
       </div>
+      <div ng-controller="FormController">
+        <div class="col-md-9 col-md-offset-1">
+          <div ng-include="'app/shared/form/form.html'"></div>
+        </div>
+      </div>
     </row>
   </div>
 
   <script src="assets/libs/jquery.min.js"></script>
   <script src="assets/libs/bootstrap.min.js"></script>
+  <script src="assets/libs/bootstrap-datepicker.min.js"></script>
   <script src="assets/libs/angular.min.js"></script>
   <script src="assets/libs/angular-route.min.js"></script>
   <script src="app/app.js"></script>
   <script src="app/routes.js"></script>
   <script src="app/shared/header/header.js"></script>
   <script src="app/shared/documents/documents.js"></script>
+  <script src="app/shared/form/form.js"></script>
 
 </body>
 

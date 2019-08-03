@@ -1,1 +1,154 @@
-<h3> Nytt dokument </h3>
+<h3> Skapa nytt dokument </h3>
+<hr />
+<form ng-submit="submit(form)" name="form">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="titleInput">Mötets rubrik</label>
+      <input type="text" name="title" class="form-control" id="titleInput" placeholder="Protokoll styrelsemöte">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="subtitleInput">Mötets underrubrik</label>
+      <input type="text" name="subtitle" class="form-control" id="subtitleInput">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="locationInput">Mötets plats</label>
+      <input type="text" name="location" class="form-control" id="locationInput" placeholder="FGG HQ">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="datepickerInput">Mötets datum</label>
+      <div class="input-group date" id="datepicker" data-provide="datepicker" data-date-today-highlight="true"
+        data-date-format="yyyy-mm-dd">
+        <input type="text" name="date" class="form-control" id="datepickerInput">
+        <div class="input-group-addon">
+          <span class="glyphicon glyphicon-th"></span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <label>Närvarande</label>
+      <table class="table order-list">
+        <thead>
+          <tr>
+            <td>Namn</td>
+            <td>Position</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="attendee in attendees">
+            <td class="col-sm-5">
+              <input type="text" name="attendee.name" class="form-control" value="{{attendee.name}}" />
+            </td>
+            <td class="col-sm-5">
+              <input type="text" name="attendee.position" class="form-control" value="{{attendee.position}}" />
+            </td>
+            <td class="col-sm-2">
+              <button type="button" class="btn btn-danger" ng-click="removeAttendee(attendee)">Ta bort</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="col-sm-5">
+              <input type="text" class="form-control" ng-model="attendee.name" />
+            </td>
+            <td class="col-sm-5">
+              <input type="text" class="form-control" ng-model="attendee.position" />
+            </td>
+            <td class="col-sm-2" style="text-align: left;">
+              <button type="button" class="btn btn-primary" ng-click="addAttendee()">Lägg till</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="form-group col-md-12">
+      <label>Punkter</label>
+      <table class="table order-list">
+        <thead>
+          <tr>
+            <td>§</td>
+            <td>Rubrik</td>
+            <td>Innehåll</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="paragraph in paragraphs">
+            <td class="col-sm-1">
+              §{{$index+1}}
+            </td>
+            <td class="col-sm-2">
+              <input type="text" name="paragraph.title" class="form-control" value="{{paragraph.title}}" />
+            </td>
+            <td class="col-sm-7">
+              <textarea name="paragraph.content" class="form-control" rows="1">{{paragraph.content}}</textarea>
+            </td>
+            <td class="col-sm-2">
+              <button type="button" class="btn btn-danger" ng-click="removeParagraph(paragraph)">Ta bort</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="col-sm-1"></td>
+            <td class="col-sm-2">
+              <input type="text" class="form-control" ng-model="paragraph.title" />
+            </td>
+            <td class="col-sm-7">
+              <textarea class="form-control" rows="1" ng-model="paragraph.content" />
+              </td>
+            <td class="col-sm-2" style="text-align: left;">
+              <button type="button" class="btn btn-primary" ng-click="addParagraph()">Lägg till</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="form-group col-md-12">
+      <label>Signatur</label>
+      <table class="table order-list">
+        <thead>
+          <tr>
+            <td>Kommentar</td>
+            <td>Namn</td>
+            <td>Position</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="signature in signatures">
+            <td class="col-sm-3">
+              <input type="text" name="signature.comment" class="form-control" value="{{signature.comment}}" />
+            </td>
+            <td class="col-sm-4">
+              <input type="text" name="signature.name" class="form-control" value="{{signature.name}}" />
+            </td>
+            <td class="col-sm-3">
+              <input type="text" name="signature.position" class="form-control" value="{{signature.position}}" />
+            </td>
+            <td class="col-sm-2">
+              <button type="button" class="btn btn-danger" ng-click="removeSignature(signature)">Ta bort</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="col-sm-3">
+              <input type="text" class="form-control" ng-model="signature.comment" />
+            </td>
+            <td class="col-sm-4">
+              <input type="text" class="form-control" ng-model="signature.name" />
+            </td>
+            <td class="col-sm-3">
+              <input type="text" class="form-control" ng-model="signature.position" />
+            </td>
+            <td class="col-sm-2" style="text-align: left;">
+              <button type="button" class="btn btn-primary" ng-click="addSignature()">Lägg till</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="form-group col-md-12">
+      <button type="submit" class="btn btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
