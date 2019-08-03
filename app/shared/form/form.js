@@ -51,7 +51,20 @@ angular.module('form', [])
       $scope.signatures.splice($scope.signatures.indexOf(signature), 1);
     };
 
+    $scope.github = {
+      username: '',
+      password: ''
+    }
+
     $scope.submit = function (form) {
       console.log($("form").serializeArray());
+      var auth = btoa($scope.github.username + ":" + $scope.github.password);
+
+      fetch("https://api.github.com/user", {
+        headers: {
+          Authorization: "Basic " + auth
+        }
+      }).then(res => res.json()).then(console.log)
+
     };
   });

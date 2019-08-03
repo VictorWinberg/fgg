@@ -2,19 +2,19 @@
 <hr />
 <form ng-submit="submit(form)" name="form">
   <div class="row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-sm-6">
       <label for="titleInput">Mötets rubrik</label>
       <input type="text" name="title" class="form-control" id="titleInput" placeholder="Protokoll styrelsemöte">
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-sm-6">
       <label for="subtitleInput">Mötets underrubrik</label>
       <input type="text" name="subtitle" class="form-control" id="subtitleInput">
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-sm-6">
       <label for="locationInput">Mötets plats</label>
       <input type="text" name="location" class="form-control" id="locationInput" placeholder="FGG HQ">
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-sm-6">
       <label for="datepickerInput">Mötets datum</label>
       <div class="input-group date" id="datepicker" data-provide="datepicker" data-date-today-highlight="true"
         data-date-format="yyyy-mm-dd">
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group col-md-12">
+    <div class="form-group col-sm-12">
       <label>Närvarande</label>
       <table class="table order-list">
         <thead>
@@ -103,7 +103,7 @@
         </tfoot>
       </table>
     </div>
-    <div class="form-group col-md-12">
+    <div class="form-group col-sm-12">
       <label>Signatur</label>
       <table class="table order-list">
         <thead>
@@ -147,7 +147,15 @@
         </tfoot>
       </table>
     </div>
-    <div class="form-group col-md-12">
+    <div class="form-group col-sm-6">
+      <label for="usernameInput">Github användarnamn</label>
+      <input type="text" ng-model="github.username" class="form-control" id="usernameInput">
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="passwordInput">Github lösenord</label>
+      <input type="password" ng-model="github.password" class="form-control" id="passwordInput">
+    </div>
+    <div class="form-group col-sm-12">
       <button type="submit" class="btn btn btn-primary">Submit</button>
     </div>
   </div>
