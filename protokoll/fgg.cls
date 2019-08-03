@@ -52,7 +52,7 @@
   \fancyhf{}
 
   \newcommand{\headleft}{%
-    \raisebox{-3mm}{\includegraphics[width=16mm]{FGG}}\hspace{1mm}
+    \raisebox{-3mm}{\includegraphics[width=16mm]{fgg}}\hspace{1mm}
     \parbox[b]{10cm}{%
       \textbf{Fina Grabbarnas Grupp}\\
       FGG Original\\

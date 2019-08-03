@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="website">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fina Grabbarnas Grupp</title>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <row>
+      <!-- Top -->
+      <header>
+        <div ng-controller="HeaderController">
+          <div class="col-md-12">
+            <div ng-include="'app/shared/header/header.html'"></div>
+          </div>
+        </div>
+      </header>
+      <div class="col-md-9 col-md-offset-1">
+        <div ng-view></div>
+      </div>
+      <div ng-controller="DocumentsController">
+        <div class="col-md-9 col-md-offset-1">
+          <div ng-include="'app/shared/documents/documents.html'"></div>
+        </div>
+      </div>
+    </row>
+  </div>
+
+  <script src="assets/libs/jquery.min.js"></script>
+  <script src="assets/libs/bootstrap.min.js"></script>
+  <script src="assets/libs/angular.min.js"></script>
+  <script src="assets/libs/angular-route.min.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/routes.js"></script>
+  <script src="app/shared/header/header.js"></script>
+  <script src="app/shared/documents/documents.js"></script>
+
+</body>
+
+</html>

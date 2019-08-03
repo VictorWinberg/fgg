@@ -1,0 +1,11 @@
+<h3> Dokument </h3>
+<hr />
+<div ng-repeat="folder in folders">
+  <h4 ng-if="!folder.items.length" href="/{{folder.href}}">{{folder.title}}</h4>
+  <h4 ng-if="folder.items.length">{{folder.title}}</h4>
+  <ul ng-if="folder.items.length">
+    <li ng-repeat="item in folder.items">
+      <a href="{{item.href}}">{{item.title}}</a>
+    </li>
+  </ul>
+</div>
