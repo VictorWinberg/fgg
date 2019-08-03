@@ -5,13 +5,13 @@ angular.module('documents', [])
         var items = [];
         $.getJSON(url, function (data) {
           $.each(data, function (key, val) {
-            var [name, type] = val.name.split(".");
+            var type = val.name.slice(-3);
             var url = "https://api.github.com/repos/victorwinberg/fgg/contents/";
             var latexonline = "https://latexonline.cc/compile?command=xelatex&git=https://github.com/victorwinberg/fgg&target="
             var href = latexonline + val.url.slice(url.length).split("?")[0];
             if (val.type == "file" && type == "tex") {
               items.push({
-                title: name,
+                title: val.name.slice(0, -4),
                 href: href
               });
             }
