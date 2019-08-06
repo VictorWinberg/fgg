@@ -1,4 +1,16 @@
 angular.module('form', [])
+  .directive('datetimepicker', function () {
+    return {
+      restrict: 'A',
+      link: function (scope, el, attr) {
+        el.datetimepicker({
+          locale: 'sv',
+          format: 'YYYY-MM-DD HH:mm',
+          defaultDate: moment().startOf('day').add(1, 'days').add(18, 'hours'),
+        });
+      }
+    };
+  })
   .controller('FormController', function ($scope) {
     $scope.attendee = {
       name: '',
@@ -83,25 +95,14 @@ angular.module('form', [])
         return result;
       }, []);
 
-      const formatDate = (date) => {
-        var monthNames = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
-        var weekdayNames = ["Söndagen", "Måndagen", "Tisdagen", "Onsdagen", "Torsdagen", "Fredagen", "Lördagen"];
-
-        var day = date.getDate();
-        var weekday = date.getDay();
-        var monthIndex = date.getMonth();
-        var year = date.getFullYear();
-
-        return `${weekdayNames[weekday]} den ${day} ${monthNames[monthIndex]} ${year}`
-      }
+      const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
       protocol.push(`\\title{${v['title'] || 'Protokoll styrelsemöte'}}`);
       if (v['subtitle']) protocol.push(`\\subtitle{${v['subtitle']}}`);
       protocol.push('\\author{Fina Grabbarnas Grupp}\n');
 
-      var date = v['date'] ? new Date(v['date']) : new Date();
-      protocol.push(`\\date{\\formatdate{${date.getDate()}}{${date.getMonth()+1}}{${date.getFullYear()}}}`);
-      protocol.push(`\\datum{${formatDate(date)}}`);
+      protocol.push(`\\date{\\formatdate${moment(v['date']).format('{D}{M}{Y}')}}`);
+      protocol.push(`\\datum{${capitalize(moment(v['date']).format('dddd[en] [den] D MMMM YYYY [kl.] HH.mm'))}}`);
 
       protocol.push(`\\plats{${v['location'] || 'FGG HQ'}}`);
       protocol.push('');
@@ -151,7 +152,7 @@ angular.module('form', [])
 
       var auth = btoa($scope.github.username + ":" + $scope.github.password);
 
-      var yymmdddate = `${date.getFullYear().toString().substr(-2)}${("0" + (date.getMonth() + 1)).slice(-2)}${("0" + date.getDate()).slice(-2)}`
+      var yymmdddate = moment(v['date']).format('YYMMDD');
       var filename = `${(v['title'] || 'Protokoll styrelsemöte').replace(/\s+/g, '-').toLowerCase()}-${yymmdddate}`
 
       function b64EncodeUnicode(str) {
