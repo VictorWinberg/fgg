@@ -63,11 +63,6 @@ angular.module('form', [])
       $scope.signatures.splice($scope.signatures.indexOf(signature), 1);
     };
 
-    $scope.github = {
-      username: '',
-      password: ''
-    }
-
     $scope.submit = async function (form) {
       const protocol = ['\\documentclass{fgg}\n'];
       const v = $("form").serializeArray().reduce((groups, item, idx) => {
@@ -150,8 +145,6 @@ angular.module('form', [])
 
       console.log(protocol.join('\n'));
 
-      var auth = btoa($scope.github.username + ":" + $scope.github.password);
-
       var yymmdddate = moment(v['date']).format('YYMMDD');
       var filename = `${(v['title'] || 'Protokoll styrelsemöte').replace(/\s+/g, '-').toLowerCase()}-${yymmdddate}`
 
@@ -160,10 +153,9 @@ angular.module('form', [])
           (match, p1) => String.fromCharCode('0x' + p1)));
       }
 
-      await fetch(`https://api.github.com/repos/victorwinberg/fgg/contents/protokoll/${filename}.tex`, {
-        method: 'PUT',
+      await fetch(`https://fgg.zolly.ml/api/protocol?filename=${filename}.tex`, {
+        method: 'POST',
         headers: {
-          'Authorization': "Basic " + auth,
           'Content-Type': 'application/json; charset=utf-8'
         },
         body: JSON.stringify({

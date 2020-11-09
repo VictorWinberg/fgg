@@ -26,14 +26,19 @@ angular.module('documents', [])
         var gathered = 0;
         var fetched = 0;
         $.each(data, function (key, val) {
-          if (val.type == "dir" && val.name != "app" && val.name != "assets") {
+          if (
+            val.type == "dir" &&
+            val.name != "app" &&
+            val.name != "assets" &&
+            val.name != ".github"
+          ) {
             gathered++;
             get_course(val.url, function (items) {
               folders.push({
                 title: val.name.charAt(0).toUpperCase() + val.name.slice(1),
-                items: items
+                items: items,
               });
-              fetched++
+              fetched++;
               if (fetched == gathered) {
                 callback(folders);
               }
