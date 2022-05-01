@@ -86,8 +86,7 @@
 
   \rfoot{%
     \begin{flushright}
-      \href{mailto:fgg@gmail.com}{fgg@gmail.com}\\
-      \href{http://fgg.zolly.ml}{fgg.zolly.ml}
+      \href{https://victorwinberg.github.io/fgg}{victorwinberg.github.io/fgg}
     \end{flushright}
   }
 }
