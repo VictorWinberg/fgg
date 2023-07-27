@@ -63,6 +63,7 @@ angular.module('form', [])
       $scope.signatures.splice($scope.signatures.indexOf(signature), 1);
     };
 
+    // This does not work anymore :(
     $scope.submit = async function (form) {
       const protocol = ['\\documentclass{fgg}\n'];
       const v = $("form").serializeArray().reduce((groups, item, idx) => {
@@ -153,7 +154,7 @@ angular.module('form', [])
           (match, p1) => String.fromCharCode('0x' + p1)));
       }
 
-      await fetch(`https://fgg.zolly.ml/api/protocol?filename=${filename}.tex`, {
+      await fetch(`/api/protocol?filename=${filename}.tex`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=utf-8'

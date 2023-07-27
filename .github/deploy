@@ -1,7 +1,0 @@
-#!/bin/bash
-set -eu # exit script on errors
-
-echo "> npm install"
-npm install
-
-export MAIN="server.js"
